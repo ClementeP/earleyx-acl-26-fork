@@ -382,7 +382,8 @@ public abstract class EarleyParser implements Parser {
      Timing.startTime();
     }
     this.words = words;
-    
+    long parseStartTime = System.nanoTime();
+
     // init
     sentInit();
     
@@ -451,7 +452,8 @@ public abstract class EarleyParser implements Parser {
       /** Step (2d): output word measures **/
       /*************************************/
       outputWordMeasures(right);
-      
+      System.err.println("## WordTime " + sentId + " " + right + " " + String.format("%.4f", (System.nanoTime() - parseStartTime) / 1e6));
+
       if(verbose>=0 && right%100==0){
         System.err.print(" (" + right + ") ");
       } 
